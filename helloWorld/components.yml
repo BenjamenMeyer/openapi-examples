@@ -1,0 +1,87 @@
+schemas:
+    error:
+        required:
+          - code
+          - message
+        properties:
+          code:
+            type: integer
+            format: int32
+          message:
+            type: string
+parameter_headers:
+    client_transaction_id:
+        name: Request-Id
+        description: Client Transaction ID
+        in: header
+        required: false
+        schema:
+            type: string
+headers:
+    server_transaction_id:
+        transaction-id:
+          required: true
+          description: Hello World API Transaction ID
+          schema:
+              type: string
+              format: uuid
+    client_transaction_id:
+        request-id:
+          required: false
+          description: Client specified Transaction ID
+          schema:
+              type: string
+queries:
+    limit:
+        name: limit
+        in: query
+        description: max number items to return during pagination
+        required: false
+        style: form
+        schema:
+            type: integer
+            format: int32
+    marker:
+        name: marker
+        in: query
+        description: marker to start the listing at
+        required: false
+        style: form
+        schema:
+            type: string
+links:
+    parameters:
+        relParam:
+            - name: 'rel'
+              schema:
+                type: string
+        hrefParam:
+            - name: 'href'
+              schema:
+                type: string
+items:
+    id:
+        - name: 'id'
+          schema:
+            type: string
+    links:
+        - name: 'links'
+          schema:
+            type: array
+            items:
+              $ref: components.yml#/links
+content:
+    generic_list:
+        'application/json':
+            schema:
+                type: array
+                items:
+                    type: object
+                    additionalProperties:
+                        type: object
+    generic_item:
+        'application/json':
+            schema:
+                type: object
+                additionalProperties:
+                    type: object

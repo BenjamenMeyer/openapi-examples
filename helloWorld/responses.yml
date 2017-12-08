@@ -1,0 +1,37 @@
+error:
+    auth_401:
+        headers:
+            $ref: components.yml#/headers/server_transaction_id
+            $ref: components.yml#/headers/client_transaction_id
+        description: Authentication Error
+        content:
+            'application/json':
+                schema:
+                    $ref: components.yml#/schemas/error
+    auth_403:
+        headers:
+            $ref: components.yml#/headers/server_transaction_id
+            $ref: components.yml#/headers/client_transaction_id
+        description: Permissions Error
+        content:
+            'application/json':
+                schema:
+                    $ref: components.yml#/schemas/error
+    item_404:
+        headers:
+            $ref: components.yml#/headers/server_transaction_id
+            $ref: components.yml#/headers/client_transaction_id
+        description: Item not found
+        content:
+            'application/json':
+                schema:
+                    $ref: components.yml#/schemas/error
+    server_5xx:
+        headers:
+            $ref: components.yml#/headers/server_transaction_id
+            $ref: components.yml#/headers/client_transaction_id
+        description: Internal Server Error.
+        content:
+            'application/json':
+                schema:
+                    $ref: components.yml#/schemas/error

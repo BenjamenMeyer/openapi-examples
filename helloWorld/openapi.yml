@@ -1,0 +1,23 @@
+openapi: "3.0.0"
+info:
+    title: Hello World API
+    description: Hello World OpenAPI Example
+    version: "0.0.0"
+    contact:
+        name: Benjamen Meyer
+        email: bm_witness@yahoo.com
+servers:
+    - url: https://localhost:8443
+      description: Docker Provisioned API (Dev)
+paths:
+    /:
+        $ref: root.yml#/root
+security:
+    - authToken: []
+components:
+    securitySchemes:
+        authToken:
+            type: apiKey
+            description: Auth Token header
+            name: Auth-Token
+            in: header

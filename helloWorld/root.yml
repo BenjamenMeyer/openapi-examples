@@ -1,0 +1,53 @@
+root:
+    get:
+        tags:
+            - Hello World GET
+        description: Hello World GET
+        operationId: helloWorldGet
+        parameters:
+            - $ref: components.yml#/parameter_headers/client_transaction_id
+            - $ref: components.yml#/queries/limit
+            - $ref: components.yml#/queries/marker
+        responses:
+            '200':
+                description: Hello World Result
+                headers:
+                    $ref: components.yml#/headers/server_transaction_id
+                    $ref: components.yml#/headers/client_transaction_id
+                content:
+                    $ref: components.yml#/content/generic_list
+            '401':
+                $ref: responses.yml#/error/auth_401
+            '403':
+                $ref: responses.yml#/error/auth_403
+            '404':
+                $ref: responses.yml#/error/item_404
+            default:
+                $ref: responses.yml#/error/server_5xx
+    put:
+        tags:
+            - Hello World PUT
+        description: Hello World PUT
+        operationId: helloWorldPut
+        parameters:
+            - $ref: components.yml#/parameter_headers/client_transaction_id
+        requestBody:
+            description: request example
+            content:
+                $ref: components.yml#/content/generic_item
+        responses:
+            '200':
+                description: Hello World Result
+                headers:
+                    $ref: components.yml#/headers/server_transaction_id
+                    $ref: components.yml#/headers/client_transaction_id
+                content:
+                    $ref: components.yml#/content/generic_item
+            '401':
+                $ref: responses.yml#/error/auth_401
+            '403':
+                $ref: responses.yml#/error/auth_403
+            '404':
+                $ref: responses.yml#/error/item_404
+            default:
+                $ref: responses.yml#/error/server_5xx
